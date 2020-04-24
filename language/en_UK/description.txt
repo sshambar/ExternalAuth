@@ -1,0 +1,2 @@
+Supports login via webserver provided identity, with optional login/logout
+links, auto-registration, and Piwigo login fallback.
