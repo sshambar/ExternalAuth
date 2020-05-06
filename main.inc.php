@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: ExternalAuth
-Version: 0.2.0
+Version: auto
 Description: Supports login via webserver provided identity
 Plugin URI: http://piwigo.org/ext/extension_view.php?eid=894
 Author: Scott Shambarger
@@ -614,8 +614,13 @@ class ExternalAuth
    */
   protected static function random_password( $length = 12 ) {
     // avoid non-websafe and ambigous characters
-    $chars = "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789!@#^*_-=:,.";
-    return substr( str_shuffle( $chars ), 0, $length );
+    static $cs = 'abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ123456789';
+    $out = '';
+    while($length-- > 0)
+    {
+      $out .= $cs[rand(0, 57)];
+    }
+    return $out;
   }
 
   /**
@@ -631,7 +636,8 @@ class ExternalAuth
 
     // if default user exists, temporarily replace global default (clear cache)
     $default_user = $this->get_conf('default_new');
-    $default_id = empty($default_user) ? false : get_userid($default_user);
+    $default_id = empty($default_user) ?
+		  false : $this->search_for_userid($default_user);
     if ($default_id)
     {
       $this->debug('using remote default user "' . $default_user . '"');
