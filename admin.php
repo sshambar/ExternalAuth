@@ -109,7 +109,7 @@ class ExternalAuthAdmin
     global $page;
     $tab = isset($_GET['tab']) ? $_GET['tab'] : null;
     $page['tab'] = isset($this::$tabs[$tab]) ?
-		   $tab : array_key_first($this::$tabs);
+		   $tab : array_keys($this::$tabs)[0];
     return $page['tab'];
   }
 
