@@ -1,0 +1,38 @@
+
+<p>
+  El plugin de <strong>Autenticación Externa</strong> soporta el
+  inicio de sesión basado en la identidad proporcionada por el
+  servidor web (alias el usuario remoto), que normalmente se
+  suministra a través de servidores proxy o módulos de servidor web
+  (por ejemplo. "Basic Auth"). Difiere de la opción de Piwigo
+  "apache_authentication" al proporcionar un mayor grado de
+  flexibilidad, incluyendo:
+
+  <ul class="square-list">
+    <li>Control sobre qué variable(s) se utilizan para la autenticación</li>
+    <li>Piwigo login siempre seguirá cambios en (reconocido) Usuarios remotos</li>
+    <li>Nativo Piwigo logins posible cuando el usuario remoto se considera un invitado</li>
+    <li>Opción de copiar las contraseñas suministrados servidor web a las cuentas de Piwigo</li>
+    <li>Urls de inicio de sesión externos que reemplazan o coexisten con Urls nativos</li>
+    <li>Posibilidad de auto-registrar Usuarios Remotos desconocidos como nuevos usuarios de Piwigo</li>
+    <li>Control sobre perfiles de auto-registro, contraseñas, estado y notificaciones</li>
+    <li>Lista flexible de Usuarios Remotos considerados huéspedes</li>
+  </ul>
+</p>
+
+<p>
+  La <strong>Autenticación Alternativa</strong> es opcional, y permite
+  el ingreso nativo de Piwigo cuando el Usuario Remoto actual es
+  considerado un invitado. NOTA: Si el registro automático del usuario
+  remoto está desactivado, cualquier usuario remoto desconocido para
+  Piwigo se considera un invitado. Si Fallback está desactivado, los
+  accesos a Piwigo siempre coincidirán con el usuario remoto actual.
+</p>
+
+<p>
+  El plugin hace todo lo posible para evitar el bloqueo de cuentas no
+  intencional, y siempre se desactiva al activarse para permitir la
+  configuración antes de que la aplicación de inicio de sesión esté
+  activada (¡lo que puede desconectar inmediatamente la sesión
+  actual!).
+</p>

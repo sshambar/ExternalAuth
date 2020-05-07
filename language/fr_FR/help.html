@@ -1,0 +1,37 @@
+
+<p>
+  Le plugin <strong>d’authentification externe</strong> prend en
+  charge le login basé sur l’identité fournie par le serveur web (alias
+  l’utilisateur distant), qui est généralement fourni via des serveurs
+  proxy ou des modules de serveur web (par exemple. "Basic Auth"). Il
+  diffère de l’option Piwigo "apache_authentication" en offrant un plus
+  grand degré de flexibilité, y compris :
+
+  <ul class="square-list">
+    <li>Contrôle sur les variables utilisées pour l’authentification</li>
+    <li>Piwigo login suivra toujours les changements dans (reconnu) Utilisateurs distants</li>
+    <li>Connexion native Piwigo possible lorsque l’utilisateur distant est considéré comme un invité</li>
+    <li>Option pour copier les mots de passe fournis par le serveur web vers les comptes Piwigo</li>
+    <li>S’inscrire inconnu Utilisateurs distants en tant que nouveaux utilisateurs Piwigo</li>
+    <li>Contrôle des profils d’auto-enregistrement, mots de passe, statut et notifications</li>
+    <li>Liste flexible des utilisateurs distants considérés comme des invités
+  </ul>
+</p>
+
+<p>
+  <strong>L’authentification de repli</strong> est facultative et
+  permet les connexions Piwigo natives lorsque l’utilisateur distant
+  actuel est considéré comme un invité. REMARQUE : Si l’enregistrement
+  automatique de l’utilisateur distant est désactivé, tout utilisateur
+  distant inconnu de Piwigo est considéré comme un invité. Si Fallback
+  est désactivé, les connexions Piwigo correspondent toujours à
+  l’utilisateur distant actuel.
+</p>
+
+<p>
+  Le plugin fait tout son possible pour empêcher le verrouillage non
+  intentionnel du compte, et est toujours désactivé lors de
+  l’activation pour permettre la configuration avant que l’application
+  de connexion soit activée (qui peut immédiatement déconnecter la
+  session en cours!).
+</p>

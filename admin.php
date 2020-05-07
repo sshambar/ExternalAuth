@@ -109,7 +109,7 @@ class ExternalAuthAdmin
     global $page;
     $tab = isset($_GET['tab']) ? $_GET['tab'] : null;
     $page['tab'] = isset($this::$tabs[$tab]) ?
-		   $tab : array_keys($this::$tabs)[0];
+		   $tab : current(array_keys($this::$tabs));
     return $page['tab'];
   }
 
@@ -135,9 +135,10 @@ class ExternalAuthAdmin
   {
     // send variables to template
     $vals = array();
-    foreach (array_keys($this->ea::$defaults) as $key)
+    $ea = $this->ea;
+    foreach (array_keys($ea::$defaults) as $key)
     {
-      $val = $this->ea->get_conf($key);
+      $val = $ea->get_conf($key);
       if (is_array($val))
       {
 	$val = implode(', ', $val);
@@ -149,16 +150,16 @@ class ExternalAuthAdmin
     }
     $template->assign('EA', $vals);
 
-    $template->assign('EA_FALLBACK_ACTIVE', $this->ea->fallback_active ? '1':'');
-    $template->assign('EA_WOULD_LOGOUT', $this->ea->would_logout ? '1':'');
-    $template->assign('EA_REMOTE_USER_VAR', $this->ea->remote_user_var);
-    $template->assign('EA_REMOTE_USER', $this->ea->remote_user);
-    $template->assign('EA_REMOTE_UNKNOWN', $this->ea->remote_unknown ? '1':'');
-    $template->assign('EA_REMOTE_IS_GUEST', $this->ea->remote_is_guest() ? '1':'');
+    $template->assign('EA_FALLBACK_ACTIVE', $ea->fallback_active ? '1':'');
+    $template->assign('EA_WOULD_LOGOUT', $ea->would_logout ? '1':'');
+    $template->assign('EA_REMOTE_USER_VAR', $ea->remote_user_var);
+    $template->assign('EA_REMOTE_USER', $ea->remote_user);
+    $template->assign('EA_REMOTE_UNKNOWN', $ea->remote_unknown ? '1':'');
+    $template->assign('EA_REMOTE_IS_GUEST', $ea->remote_is_guest() ? '1':'');
     if ($tab == 'reg')
     {
       // warn if default user is not found
-      $default_user = $this->ea->get_conf('default_new');
+      $default_user = $ea->get_conf('default_new');
       if ((! empty($default_user)) && (! get_userid($default_user)))
       {
 	$template->assign('EA_DEFAULT_NEW_WARNING', '1');
@@ -196,7 +197,8 @@ class ExternalAuthAdmin
    */
   protected function import_param($param)
   {
-    $default = $this->ea::$defaults[$param];
+    $ea = $this->ea;
+    $default = $ea::$defaults[$param];
     if (isset($_POST['EA_'.$param]))
     {
       $val = trim($_POST['EA_'.$param]);

@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: ExternalAuth
-Version: 0.3.0
+Version: auto
 Description: Supports login via webserver provided identity
 Plugin URI: http://piwigo.org/ext/extension_view.php?eid=894
 Author: Scott Shambarger
@@ -183,7 +183,14 @@ class ExternalAuth
     if (@!empty($conf[$this->store . '_debug'])
 	|| $this->get_conf('debug'))
     {
-      $logger->debug($message, $this->store, $args);
+      if (is_object($logger))
+      {
+	$logger->debug($message, $this->store, $args);
+      }
+      else
+      {
+	error_log('[DEBUG] ['.$this->store.'] '.$message);
+      }
     }
   }
 
@@ -196,7 +203,14 @@ class ExternalAuth
   public function error($message, $args = array())
   {
     global $logger;
-    $logger->error($message, $this->store, $args);
+    if (is_object($logger))
+    {
+      $logger->error($message, $this->store, $args);
+    }
+    else
+    {
+      error_log('[ERROR] ['.$this->store.'] '.$message);
+    }
   }
 
   /**

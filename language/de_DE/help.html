@@ -1,0 +1,36 @@
+<p>
+  Das Plugin <strong>Externe Authentifizierung</strong> unterstützt
+  Login basierend auf der Identität des Webservers (auch Remote User
+  genannt), der normalerweise über Proxy-Server oder Webserver-Module
+  (z.B. "Basic Auth") bereitgestellt wird. Er unterscheidet sich von
+  der Option Piwigo "apache_authentication" dadurch, dass er ein
+  höheres Maß an Flexibilität bietet, unter anderem:
+
+  <ul class="square-list">
+    <li>Kontrolle darüber, welche Variable(n) für die Authentifizierung verwendet werden</li>
+    <li>Piwigo login wird immer Änderungen folgen in (erkannten) Remote User</li>
+    <li>Native Piwigo Logins sind möglich, wenn der Remote User als Gast angesehen wird</li>
+    <li>Option zum Kopieren von Webserver lieferte Passwörter an Piwigo-Konten</li>
+    <li>Externe Login/Logout-Urls ersetzen oder koexistieren mit nativen Urls</li>
+    <li>Möglichkeit, um unbekannte Remote-Benutzer automatisch als neue Piwigo-Benutzer zu registrieren.</li>
+    <li>Kontrolle über Auto-Registrierungs-Profile, Passwörter, Status und Benachrichtigungen</li>
+    <li>Flexible Liste Remote-Benutzer als Gäste anzuerkennen</li>
+
+  </ul>
+</p>
+
+<p>
+  <strong>Fallback Authentication</strong> ist optional und erlaubt
+  native Piwigo Logins, wenn der aktuelle Remote User als Gast
+  gilt. HINWEIS: Wenn die automatische Registrierung eines entfernten
+  Benutzers deaktiviert ist, gilt jeder entfernte Benutzer, der Piwigo
+  unbekannt ist, als Gast. Wenn Fallback deaktiviert ist, werden
+  Piwigo Logins immer mit dem aktuellen Remote User übereinstimmen.
+</p>
+
+<p>
+  Das Plugin unternimmt jede Anstrengung, um eine nicht absichtliche
+  Sperrung des Accounts zu verhindern, und ist immer deaktiviert, um
+  eine Konfiguration zu ermöglichen, bevor die Login-Aktivierung
+  aktiviert ist (was sofort die aktuelle Session ausloggen kann!).
+</p>
