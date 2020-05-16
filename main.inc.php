@@ -140,14 +140,14 @@ class ExternalAuth
     }
 
     // stay out of the way on Web API requests (unless requested)
-    if(script_basename() == 'ws' && ! $this->get_conf('webapi_also'))
+    if(defined('IN_WS') && IN_WS && ! $this->get_conf('webapi_also'))
     {
       return;
     }
 
     // add event handlers
     add_event_handler('user_init', array($this, 'user_init'));
-    if(script_basename() == 'ws')
+    if(defined('IN_WS') && IN_WS)
     {
       return;
     }
@@ -326,6 +326,10 @@ class ExternalAuth
    */
   public function ident_page()
   {
+    if (! $this->is_enabled())
+    {
+      return;
+    }
     if (! $this->get_conf('fallback'))
     {
       $this->debug('identification page and fallback disabled, redirect home');
