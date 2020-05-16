@@ -1,0 +1,3 @@
+Soporta inicio de sesión a través de la identidad proporcionada
+servidor web, con enlaces opcionales de inicio de sesión/salida,
+auto-registro, y Piwigo login fallback.
