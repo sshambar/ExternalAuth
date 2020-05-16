@@ -60,10 +60,9 @@ $lang['Logout URL'] = 'Logout URL';
 $lang['Troubleshooting'] = 'Troubleshooting';
 $lang['Enable plugin debug logging'] = 'Enable plugin debug logging';
 $lang['Send debug messages to Piwigo logs.  Debug logging can also be enabled by setting %s'] = 'Send debug messages to Piwigo logs.  Debug logging can also be enabled by setting %s';
-
 // reg.tpl
 $lang['Auto-Register Remote Users'] = 'Auto-Register Remote Users';
-$lang['Create new Piwigo users when a Remote Users is unknown'] = 'Create new Piwigo users when a Remote Users is unknown';
+$lang['Create new Piwigo users when a Remote User is unknown'] = 'Create new Piwigo users when a Remote User is unknown';
 $lang['Redirect auto-created users to the profile page'] = 'Redirect auto-created users to the profile page';
 $lang['Notify admin when user auto-created'] = 'Notify admin when user auto-created';
 $lang['Send notification to auto-created users'] = 'Send notification to auto-created users';
@@ -82,4 +81,3 @@ $lang['User To Use As Default Profile'] = 'User To Use As Default Profile';
 $lang['If empty, use global default user.'] = 'If empty, use global default user.';
 $lang['User %s was not found'] = 'User %s was not found';
 $lang['Default User Status'] = 'Default User Status';
-?>

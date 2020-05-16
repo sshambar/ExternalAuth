@@ -27,7 +27,7 @@ jQuery(document).ready(function() {
 	<li>
 	  <label class="font-checkbox">
 	    <span class="icon-check"></span>
-	    <input type="checkbox" name="EA_register_new"{if $EA.register_new} checked="checked"{/if}/> {'Create new Piwigo users when a Remote Users is unknown'|translate}
+	    <input type="checkbox" name="EA_register_new"{if $EA.register_new} checked="checked"{/if}/> {'Create new Piwigo users when a Remote User is unknown'|translate}
 	  </label>
 	</li>
 	<li>
