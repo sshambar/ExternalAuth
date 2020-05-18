@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: ExternalAuth
-Version: 0.4.0
+Version: 0.4.1
 Description: Supports login via webserver provided identity
 Plugin URI: http://piwigo.org/ext/extension_view.php?eid=894
 Author: Scott Shambarger
