@@ -143,9 +143,13 @@ class ExternalAuthAdmin
       {
 	$val = implode(', ', $val);
       }
-      if (! is_bool($val) || $val)
+      if (is_bool($val) || $val)
       {
 	$vals[$key] = $val;
+      }
+      else
+      {
+	$vals[$key] = '';
       }
     }
     $template->assign('EA', $vals);
@@ -160,10 +164,7 @@ class ExternalAuthAdmin
     {
       // warn if default user is not found
       $default_user = $ea->get_conf('default_new');
-      if ((! empty($default_user)) && (! get_userid($default_user)))
-      {
-	$template->assign('EA_DEFAULT_NEW_WARNING', '1');
-      }
+      $template->assign('EA_DEFAULT_NEW_WARNING', ((! empty($default_user)) && (! get_userid($default_user))) ? '1':'');
       $status_options = array('' => '(default)');
       foreach (get_enums(USER_INFOS_TABLE, 'status') as $status)
       {
@@ -350,8 +351,8 @@ class ExternalAuthAdmin
     if(! $this->ea->get_conf('global_enable'))
     {
       // show notice that plugin is disabled
-      $this->show_msg('errors', 'NOTE: This plugin is currently disabled.');
-      $this->show_msg('errors', 'You can modify settings until the Status section looks correct, and then Enable the plugin.');
+      $this->show_msg('warnings', 'NOTE: This plugin is currently disabled.');
+      $this->show_msg('warnings', 'You can modify settings until the Status section looks correct, and then Enable the plugin.');
     }
     if ($this->ea->apache_auth())
     {
