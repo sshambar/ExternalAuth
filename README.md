@@ -39,10 +39,10 @@ Param           | Default Value  | Comment
 --------------- | -------------  | -------------
 global_enable   | false          | Enable plugin
 debug           | false          | optional debug logging
-remote_name     | { 'REMOTE_USER', 'REDIRECT_REMOTE_USER', 'PHP_AUTH_USER' } | $_SERVER name for remote_user
+remote_name     | { 'REMOTE_USER', 'REDIRECT_REMOTE_USER', 'PHP_AUTH_USER' } | $_SERVER names for remote_user
 remote_guests   | { 'guest' }    | remote guest names
 fallback        | true           | if remote_user is guest or unknown, allow regular login
-remote_password | { 'PHP_AUTH_PW' } | $_SERVER name for remote password
+remote_password | { 'PHP_AUTH_PW' } | $_SERVER names for remote password
 sync_password   | false          | sync Piwigo password to Remote on login
 webapi_also     | false          | also handle Web API urls (perhaps with proxy)
 login_url       | ''             | URL for external login
@@ -56,6 +56,7 @@ notify_new      | false          | send notifation to auto-created users
 sync_password_new | true         | use Remote User password (if non-empty) for auto-created users
 norand_password_new | false      | don't use random passwords if Remote User password blank (USE CAUTION!)
 email_domain_new | ''            | email domain to use for auto-created users
+email_source_new | ''            | $_SERVER names for auto-created user email
 default_new     | ''             | username of default user (empty to use regular default)
 status_new      | ''             | initial status of auto-created users (empty for default)
 

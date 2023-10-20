@@ -38,7 +38,8 @@ class ExternalAuthAdmin
 		    'webapi_also', 'debug'),
     'reg' => array('register_new', 'profile_new', 'notify_admin_new',
 		   'notify_new', 'sync_password_new', 'norand_password_new',
-		   'email_domain_new', 'default_new', 'status_new'));
+		   'email_domain_new', 'default_new', 'status_new',
+		   'email_source_new'));
   // form post action (if any)
   protected $form_action = null;
   // key => value posted values

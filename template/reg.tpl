@@ -39,8 +39,8 @@
 	    <input type="checkbox" name="EA_notify_new"{if $EA.notify_new} checked="checked"{/if}/> {'Send notification to auto-created users'|translate}
 	  </label>
 	  <a class="icon-help-circled tiptip" style="cursor:help" title="{'Notifications are suggested if Remote User passwords are not available, as a random password will be assigned.'|translate}"></a>
-	  {if ! $EA.email_domain_new}
-	    {'NOTE: Email Domain required for notifications to work'|translate}
+	  {if ! $EA.email_domain_new and ! $EA.email_source_new}
+	    {'NOTE: Email Domain or Server Variable required for notifications to work'|translate}
 	  {/if}
 	</li>
       </ul>
@@ -74,6 +74,12 @@
 	  <a class="icon-help-circled tiptip" style="cursor:help" title="{'If not empty, append to Remote User to form email address.'|translate}"></a>
 	  <br>
 	  @<input type="text" maxlength="50" size="25" id="email_domain_new" name="EA_email_domain_new" value="{$EA.email_domain_new|escape}">
+	</li>
+	<li>
+	  <label for="email_source_new">{'Server Email Variables'|translate}</label>
+	  <a class="icon-help-circled tiptip" style="cursor:help" title="{'Comma separated list of $_SERVER variables searched to locate the Remote User\'s email address (in order).  If an email is found, it will be used in preference to using the domain above.'|translate}"></a>
+	  <br>
+	  <input type="text" maxlength="255" size="50" id="email_source_new" name="EA_email_source_new" value="{$EA.email_source_new|escape}">
 	</li>
 	<li>
 	  <label for="default_new">{'User To Use As Default Profile'|translate}</label>

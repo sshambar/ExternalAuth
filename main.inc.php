@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: ExternalAuth
-Version: 0.5.0
+Version: 0.5.1
 Description: Supports login via webserver provided identity
 Plugin URI: http://piwigo.org/ext/extension_view.php?eid=894
 Author: Scott Shambarger
@@ -44,14 +44,14 @@ class ExternalAuth
     'global_enable' => false,
     // optional debug logging (or $conf['{<store>|externalauth}_debug'])
     'debug' => false,
-    // $_SERVER name for remote_user
+    // $_SERVER names for remote_user
     'remote_name' => array('REMOTE_USER', 'REDIRECT_REMOTE_USER',
 			   'PHP_AUTH_USER'),
     // remote guest names
     'remote_guests' => array('guest'),
     // if remote_user is guest or unknown, allow regular login
     'fallback' => true,
-    // $_SERVER name for remote password
+    // $_SERVER names for remote password
     'remote_password' => array('PHP_AUTH_PW'),
     // sync Piwigo password to Remote on login
     'sync_password' => false,
@@ -85,6 +85,8 @@ class ExternalAuth
     'norand_password_new' => false,
     // email domain to use for auto-created users
     'email_domain_new' => '',
+    // $_SERVER names for user email for auto-created users
+    'email_source_new' => array(''),
     // username of default user (empty to use regular default)
     'default_new' => '',
     // initial status of auto-created users (empty for default)
@@ -679,8 +681,24 @@ class ExternalAuth
     }
 
     // check for auto-email
-    $domain = $this->get_conf('email_domain_new');
-    $email = empty($domain) ? null : $this->remote_user . '@' . $domain;
+    $email = $this->get_server_var('email_source_new', $email_source);
+    if (empty($email) || ! email_check_format($email)) {
+      if (! empty($email)) {
+        $this->debug('new user email: "' . $email .
+                     '" found in server variable "' . $email_source .
+                     '" failed format validation');
+      }
+      $domain = $this->get_conf('email_domain_new');
+      $email = empty($domain) ? null : $this->remote_user . '@' . $domain;
+      if (! empty($email)) {
+        $this->debug('new user email: "' . $email .
+                     '" created from default email domain');
+      }
+    }
+    else {
+      $this->debug('new user email: "' . $email .
+                   '" found in server variable "' . $email_source . '"');
+    }
     $notify = empty($email) ? false : $this->get_conf('notify_new');
 
     // use our admin notify setting
